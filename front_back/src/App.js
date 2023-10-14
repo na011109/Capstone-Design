@@ -2,107 +2,89 @@ import './App.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-function Login(props) {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  
-  return <>
-    <h2>로그인</h2>
-
-    <div className="form">
-      <p><input className="login" type="text" name="username" placeholder="아이디" onChange={event => {
-        setId(event.target.value);
-      }} /></p>
-      <p><input className="login" type="password" name="pwd" placeholder="비밀번호" onChange={event => {
-        setPassword(event.target.value);
-      }} /></p>
-
-      <p><input className="btn" type="submit" value="로그인" onClick={() => {
-        const userData = {
-          userId: id,
-          userPassword: password,
-        };
-        fetch("http://localhost:3000/login", { //auth 주소에서 받을 예정
-          method: "post", // method :통신방법
-          headers: {      // headers: API 응답에 대한 정보를 담음
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userData), //userData라는 객체를 보냄
-        })
-          .then((res) => res.json())
-          .then((json) => {            
-            if(json.isLogin==="True"){
-              props.setMode("HOME");
-            }
-            else {
-              alert(json.isLogin)
-            }
-          });
-      }} /></p>
-    </div>
-
-    <p>계정이 없으신가요?  <button onClick={() => {
-      props.setMode("SIGNIN");
-    }}>회원가입</button></p>
-  </> 
-}
-
-
-function Signin(props) {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-
-  return <>
-    <h2>회원가입</h2>
-
-    <div className="form">
-      <p><input className="login" type="text" placeholder="아이디" onChange={event => {
-        setId(event.target.value);
-      }} /></p>
-      <p><input className="login" type="password" placeholder="비밀번호" onChange={event => {
-        setPassword(event.target.value);
-      }} /></p>
-      <p><input className="login" type="password" placeholder="비밀번호 확인" onChange={event => {
-        setPassword2(event.target.value);
-      }} /></p>
-
-      <p><input className="btn" type="submit" value="회원가입" onClick={() => {
-        const userData = {
-          userId: id,
-          userPassword: password,
-          userPassword2: password2,
-        };
-        fetch("http://localhost:3000/signin", { //signin 주소에서 받을 예정
-          method: "post", // method :통신방법
-          headers: {      // headers: API 응답에 대한 정보를 담음
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userData), //userData라는 객체를 보냄
-        })
-          .then((res) => res.json())
-          .then((json) => {
-            if(json.isSuccess==="True"){
-              alert('회원가입이 완료되었습니다!')
-              props.setMode("LOGIN");
-            }
-            else{
-              alert(json.isSuccess)
-            }
-          });
-      }} /></p>
-    </div>
-
-    <p>로그인화면으로 돌아가기  <button onClick={() => {
-      props.setMode("LOGIN");
-    }}>로그인</button></p>
-  </> 
-}
+import Login from "./UserController/Login.js";
+import Signin from "./UserController/Signin.js";
+import Quiz from "./QuizController/Quiz.js";
+import Selectmovie from './MovieController/Selectmovie';
+import Selecttype from './MovieController/Selecttype';
 
 function App() {
-  const [mode, setMode] = useState("");
+  const [mode, setMode] = useState(""); //mode 상태 정의
 
-  useEffect(() => {
+  useEffect(() => { //로그인이 되어있으면 HOME, 안 되어있으면 LOGIN 페이지로 이동
+    fetch("http://localhost:3000/authcheck")
+      .then((res) => res.json())
+      .then((json) => {        
+        if (json.isLogin === "True") {
+          setMode("SELECTMOVIE");
+        }
+        else {
+          setMode("LOGIN");
+        }
+      });
+  }, []); 
+
+  let content = null;  
+
+  if(mode==="LOGIN"){
+    content = <Login setMode={setMode}></Login> 
+  }
+  else if (mode === 'SIGNIN') {
+    content = <Signin setMode={setMode}></Signin> 
+  }
+  else if (mode === 'SELECTMOVIE') {
+    content = <Selectmovie setMode={setMode}></Selectmovie>
+  }
+  else if (mode === 'SELECTTYPE') {
+    content = <Selecttype setMode={setMode}></Selecttype>
+  }
+  else if (mode === 'QUIZ') {
+    content = <Quiz setMode={setMode}></Quiz> 
+  }
+
+
+  const modeToClass = {
+    LOGIN: 'login-signin',
+    SIGNIN: 'login-signin',
+    SELECTMOVIE: 'selectmovie'
+  };
+  
+  const modeClass = modeToClass[mode] || 'background';
+  
+  return (
+    <div className={modeClass}>
+      {content}
+    </div>
+  );
+
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+/* 
+
+import './App.css';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import {Routes, Route, NavLink} from "react-router-dom";
+
+import Header from "./Header";
+import Login from "./UserController/Login.js";
+import Signin from "./UserController/Signin.js";
+import Quiz from "./QuizController/Quiz.js";
+
+function App() {
+  const [mode, setMode] = useState(""); //mode 상태 정의
+
+  useEffect(() => { //로그인이 되어있으면 HOME, 안 되어있으면 LOGIN 페이지로 이동
     fetch("http://localhost:3000/authcheck")
       .then((res) => res.json())
       .then((json) => {        
@@ -125,19 +107,83 @@ function App() {
   }
   else if (mode === 'HOME') {
     content = <>
+    <br />
+    <Header />
     <h2>메인 페이지에 오신 것을 환영합니다</h2>
-    <p>로그인에 성공하셨습니다.</p> 
-    <a href="/logout">로그아웃</a>   
+    <p>영화를 선택해주세요.</p> 
+
+    <div className="movie">
+
+      <NavLink to={"/quiz"}>
+        <img  src="/img/insideout.jpg" alt="인사이드아웃" />
+      </NavLink>
+      <NavLink to={"/quiz"}>
+        <img  src="/img/elemental.jpg" alt="엘리멘탈" />   
+      </NavLink>
+
+      <br />
+      <a href="/logout">로그아웃</a>   
+    
+    </div>
     </>
   }
 
   return (
     <>
-      <div className="background">
-        {content}
-      </div>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signin" element={<Signin />} />
+      <Route path="/quiz" element={<Quiz />} />
+    </Routes>
+
+     <div className="background"> 
+      {content}
+     </div> 
     </>
   );
+
+
+
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+import React from "react";
+import {Routes, Route, Link} from "react-router-dom";
+
+import Home from "./pages/Home.js";
+import Login from "./pages/Login.js";
+import Signin from "./pages/Signin.js";
+import Movieselect from "./pages/Movieselect.js";
+import Quiz from "./pages/Quiz.js";
+
+function App() {
+  return (    
+    <div className="App">
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/movieselect" element={<Movieselect />} />
+          <Route path="/quiz" element={<Quiz />} />
+      </Routes>
+    </div> 
+      
+  );
+};
+
+
+
+export default App;
+
+
+
+*/

@@ -1,17 +1,61 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+/* Header.js */
+
+/* .header{
+  width: 90%;
+  position: fixed;
+  top: 0;
+  border-top-left-radius: 30%;
+  border-top-right-radius: 30%;
+  margin: 0 auto;
+  text-align: center;
+  height:10vh;
+  background-color: white;
+} */
+
+
+
+/* Quiz.js 아래 버튼 사이 여백 설정 */
+.button-container button:not(:last-child) {
+  margin-right: 10px;
+}
+
+/* App.js */
+
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: rgb(150, 209, 148);
-  margin: 50px;
-
+  background-color: rgb(41, 93, 131);
+  margin: 50px 0; 
 }
 
 .background {
   background-color: white;
   height: auto;
-  width: 90%;
+  width: auto;
+  max-width: 850px;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.login-signin{
+  background-color: white;
+  height: auto;
+  width: auto;
   max-width: 450px;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.selectmovie{
+  background-color: white;
+  height: auto;
+  width: auto;
+  max-width: 1000px;
   padding: 10px;
   margin: 0 auto;
   border-radius: 5px;
@@ -39,13 +83,13 @@ body {
 .login:focus,
 .login:hover {
   outline: none;
-  border-bottom-color: rgb(68, 112, 67);
+  border-bottom-color: rgb(2, 75, 128);
 }
 
 .btn {
   border: none;
   width: 75%;
-  background-color: rgb(68, 112, 67);
+  background-color: rgb(2, 75, 128);
   color: white;
   padding: 15px 0;
   font-weight: 600;
@@ -55,5 +99,79 @@ body {
 }
 
 .btn:hover {
-  background-color: rgb(49, 82, 48);
+  background-color: rgb(2, 75, 128);
+}
+
+/* Selectmovie.js 부분 */
+.movie {
+  display : flex;
+  justify-content: space-around;
+  padding: 30px;
+}
+
+/* Selecttype.js 부분 */
+.quiztype {
+  display:flex;
+  width:700px;
+  border-left:1px solid black;
+  border-top:1px solid black;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.type {
+  background-color: white;
+  align-items: center;
+  width: 700px;;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  border-right: 1px solid black;
+  border-bottom:1px solid black;
+}
+.type:hover{
+  background-color: rgb(201, 201, 201);
+}
+
+
+/* Quiz.js 부분 */
+
+.quiz{
+  display:flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+.movievideo{
+  width: 800px;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.problem {
+  display:flex;
+  width:700px;
+  border-left:1px solid black;
+  border-top:1px solid black;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.selection {
+  background-color: white;
+  align-items: center;
+  width: 700px;;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  border-right: 1px solid black;
+  border-bottom:1px solid black;
+}
+.selection:hover{
+  background-color: rgb(201, 201, 201);
+}
+.selection.visted{
+  border: 2px solid red;
 }
