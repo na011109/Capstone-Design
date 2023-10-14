@@ -1,6 +1,5 @@
 import '../App.css';
 import { useState } from 'react';
-//import Header from "../Header";
 
 const Login = (props) => {
   const [id, setId] = useState("");
