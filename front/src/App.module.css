@@ -1,0 +1,36 @@
+.header{
+    text-align: center;
+    height:10vh;
+    background-color: #CAF9FF;
+}
+
+.Logform{
+    border: 1px solid black;
+    width: 400px;
+    height: 400px;
+    text-align:center;
+    background-color: white;
+    font-size: 20px;
+    align-items: center;
+    margin: auto;
+}
+
+.Signinform{
+    border: 1px solid black;
+    width: 400px;
+    height: 400px;
+    text-align:center;
+    background-color: white;
+    font-size: 20px;
+    align-items: center;
+    margin: auto;
+}
+
+.Movie{
+    text-align: center;
+}
+.movieimg{
+    width:150px;
+    height:200px;
+
+}

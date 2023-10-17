@@ -85,7 +85,7 @@ app.post("/signin", (req, res) => {  // 데이터 받아서 결과 전송
     const username = req.body.userId;
     const password = req.body.userPassword;
     const password2 = req.body.userPassword2;
-
+    
     const sendData = { isSuccess: "" };
 
     if (username && password && password2) {
@@ -113,10 +113,10 @@ app.post("/signin", (req, res) => {  // 데이터 받아서 결과 전송
         sendData.isSuccess = "아이디와 비밀번호를 입력하세요!"
         res.send(sendData);  
     }
-
+    
 });
 
 
-app.listen(port, () => {    //서버 잘 실행되는지 확인
+app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })

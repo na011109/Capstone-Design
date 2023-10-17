@@ -42,12 +42,19 @@ function App() {
     content = <Quiz setMode={setMode}></Quiz> 
   }
 
+
+  const modeToClass = {
+    LOGIN: 'login-signin',
+    SIGNIN: 'login-signin',
+    SELECTMOVIE: 'selectmovie'
+  };
+  
+  const modeClass = modeToClass[mode] || 'background';
+  
   return (
-    <>
-     <div className="background"> 
+    <div className={modeClass}>
       {content}
-     </div> 
-    </>
+    </div>
   );
 
 }
