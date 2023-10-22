@@ -4,7 +4,9 @@ import { useEffect } from 'react';
 
 import Login from "./UserController/Login.js";
 import Signin from "./UserController/Signin.js";
-import Quiz from "./QuizController/Quiz.js";
+import QuizTopic from "./QuizController/QuizTopic.js";
+import QuizDictation from "./QuizController/QuizDictation.js";
+import QuizSubstitute from "./QuizController/QuizSubstitute";
 import Selectmovie from './MovieController/Selectmovie';
 import Selecttype from './MovieController/Selecttype';
 
@@ -38,8 +40,14 @@ function App() {
   else if (mode === 'SELECTTYPE') {
     content = <Selecttype setMode={setMode}></Selecttype>
   }
-  else if (mode === 'QUIZ') {
-    content = <Quiz setMode={setMode}></Quiz> 
+  else if (mode === 'QUIZ_TOPIC') {
+    content = <QuizTopic setMode={setMode}></QuizTopic> 
+  }
+  else if (mode === 'QUIZ_DIC') {
+    content = <QuizDictation setMode={setMode}></QuizDictation> 
+  }
+  else if (mode === 'QUIZ_SUB') {
+    content = <QuizSubstitute setMode={setMode}></QuizSubstitute> 
   }
 
 
