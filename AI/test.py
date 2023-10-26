@@ -28,18 +28,34 @@ def summarize():
     summary_list = summary.split(".")
     return jsonify({"summary": summary_list})
 
-#@app.route('/get_topic')
-#def get_topic():
-#   topic = test.get_result(1, test_sample, None)
-#   return jsonify({"topic": topic})
+@app.route('/get_topic')
+def get_topic():
+   topic = test.get_result(1, test_sample, None)
+   return jsonify({"topic": topic})
 
 
 test_sentence = test_sample.split(".")[0]
 
-@app.route('/correct_spelling')
-def correct_spelling():
-    corrected_text = test.get_result(2, test_sentence, 0)
-    return jsonify({"corrected_text": corrected_text})
+@app.route('/get_dictation')
+def get_dictation():
+    dictation = test.get_result(2, test_sentence, 0)
+    return jsonify({"dictation": dictation})
+
+
+test_sample2 = (
+    "What is a suitable inpatient drug and alcohol rehab center near Scott County AR?"
+)
+
+@app.route('/correct_sentences')
+def correct_sentences():
+    correct = test.get_result(3, test_sample2, 0)
+    return jsonify({"correct": correct})
+
+@app.route('/incorrect_sentences')
+def incorrect_sentences():
+    incorrect = test.get_result(3, test_sample2, 1)
+    return jsonify({"incorrect": incorrect})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
