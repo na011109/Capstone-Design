@@ -1,21 +1,5 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-/* Header.js */
-
-/* .header{
-  width: 90%;
-  position: fixed;
-  top: 0;
-  border-top-left-radius: 30%;
-  border-top-right-radius: 30%;
-  margin: 0 auto;
-  text-align: center;
-  height:10vh;
-  background-color: white;
-} */
-
-
-
 /* Quiz.js 아래 버튼 사이 여백 설정 */
 .button-container button:not(:last-child) {
   margin-right: 10px;
@@ -152,8 +136,7 @@ body {
 .problem {
   display:flex;
   width:700px;
-  border-left:1px solid black;
-  border-top:1px solid black;
+  border: 1px solid black;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -166,8 +149,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   vertical-align: middle;
-  border-right: 1px solid black;
   border-bottom:1px solid black;
+}
+.selection:last-child {
+  border-bottom: none;
 }
 .selection:hover{
   background-color: rgb(201, 201, 201);

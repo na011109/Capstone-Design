@@ -9,9 +9,7 @@ const Quiz = (props) => {
         fetch("http://localhost:5000/get_topic")
             .then((res) => res.json())
             .then((data) => {
-                // 데이터를 받아온 후 빈 데이터 필터링
-                const filteredData = data.topic.filter((item) => item.trim() !== "")
-                setData({ topic: filteredData })
+                setData(data)
                 setIsLoading(false)
             });
     }, []);

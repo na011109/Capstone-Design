@@ -25,37 +25,36 @@ const Quiz = (props) => {
             });
     }, []);
 
-    // 데이터가 업데이트되면 데이터를 섞음
+
+    // 데이터가 모두 로드되면 데이터를 섞음
     useEffect(() => {
         if (data1.correct.length > 0 && data2.incorrect.length > 0) {
             const shuffled = shuffleData(data1.correct, data2.incorrect);
             setShuffledData(shuffled);
             setIsLoading(false);
         }
-    }, [data1, data2]);
+    }, [data1.correct, data2.incorrect]);
 
     // 배열을 무작위로 섞는 함수
     const shuffleData = (correctData, incorrectData) => {
         const shuffled = [];
-        // 세 개의 항목은 data1에서 가져오기
-        for (let i = 0; i < 3; i++) {
-            shuffled.push(correctData[i]);
-        }
-        // 한 개의 항목은 data2에서 가져오기
-        shuffled.push(incorrectData[0]);
-        // 나머지 항목을 섞음
-        const restCorrectData = correctData.slice(3);
-        const restIncorrectData = incorrectData.slice(1);
 
-        const allData = [...restCorrectData, ...restIncorrectData];
-        for (let i = allData.length - 1; i > 0; i--) {
+        // correctData 모두 추가
+        shuffled.push(...correctData);
+
+        // incorrectData 중 무작위로 1개 추가
+        const randomIncorrectIndex = Math.floor(Math.random() * incorrectData.length);
+        shuffled.push(incorrectData[randomIncorrectIndex]);
+
+        // 배열을 무작위로 섞음
+        for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [allData[i], allData[j]] = [allData[j], allData[i]];
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
-        shuffled.push(...allData);
 
         return shuffled;
     };
+
 
     return (
         <div>
@@ -88,3 +87,24 @@ const Quiz = (props) => {
 }
 
 export default Quiz;
+
+/*
+    // 배열을 무작위로 섞는 함수
+    const shuffleData = (correctData, incorrectData) => {
+        const shuffled = [];
+        // data1에서 3개 항목 가져오기
+        for (let i = 0; i < 3; i++) {
+            shuffled.push(correctData[i]);
+        }
+        // data2에서 1개 항목 가져오기
+        shuffled.push(incorrectData[0]);
+        
+        // 배열을 무작위로 섞음
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+
+        return shuffled;
+    };
+*/
