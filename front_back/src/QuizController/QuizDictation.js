@@ -31,6 +31,7 @@ const Quiz = (props) => {
                 </div>
                 <br />
                 <br />
+<<<<<<< Updated upstream
                 <div className="problem">
                     <div className="selection">
                         {isLoading ? (
@@ -75,6 +76,9 @@ const Quiz = (props) => {
                         )}
                     </div>
                 </div>
+=======
+                
+>>>>>>> Stashed changes
             </div>
             <br />
             <div className="button-container">
