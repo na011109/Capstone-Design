@@ -4,69 +4,81 @@
 
 .header{
   width: 90%;
-  position: fixed;
-  top: 0;
-  border-top-left-radius: 30%;
-  border-top-right-radius: 30%;
-  margin: 0 auto;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  margin: 0 10vh;
   text-align: center;
-  height:10vh;
+  height: 18vh;
   background-color: white;
+  padding-bottom: 10px;
 }
-
-
-
-/* Quiz.js 아래 버튼 사이 여백 설정 */
-.button-container button:not(:last-child) {
-  margin-right: 10px;
+.he_ho {
+  padding-top: 10px;
+}
+.he_ho:hover{
+  cursor: pointer;
+}
+.link_contain{
+  width: 90%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.log_link{
+  color: rgb(68, 68, 68);
+  text-decoration: none;
+  font-size: 12pt;
+  padding-right: "10%"
+}
+.toggle{
+  height: 3vh;
+  text-align: center;
+  margin-right: 30px;
+  font-size: 10px;
+}
+.btn_select {
+  background-color: white;
+  border: 1px;
+  color: black;
+  margin-right: 100px;
+  margin-left: 100px;
+  font-size: 15pt;
+}
+.btn_select:hover {
+  color: darkgray;
+  cursor: pointer;
 }
 
 /* App.js */
 
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: rgb(41, 93, 131);
-  margin: 50px 0; 
+  background-color: rgb(194, 242, 255);
+  margin: 30px 0; 
 }
 
 .background {
   background-color: white;
   height: auto;
-  width: auto;
-  max-width: 850px;
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 5px;
+  width: 90%;
+  min-width: 80%;
+  min-height: 70%; 
+  margin: 0 10vh;
   box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
   text-align: center;
+  padding-bottom: 20px;
 }
-.login-signin{
-  background-color: white;
-  height: auto;
-  width: auto;
-  max-width: 450px;
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 5px;
-  box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
-  text-align: center;
-}
-.selectmovie{
-  background-color: white;
-  height: auto;
-  width: auto;
-  max-width: 1000px;
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 5px;
-  box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
-  text-align: center;
-}
+
+
+/* Login.js랑 Signin.js */
 
 .form {
   display: flex;
   padding: 30px;
   flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .login {
@@ -83,13 +95,13 @@ body {
 .login:focus,
 .login:hover {
   outline: none;
-  border-bottom-color: rgb(2, 75, 128);
+  border-bottom-color: rgb(93, 147, 161);
 }
 
-.btn {
+.btn_sub {
   border: none;
   width: 75%;
-  background-color: rgb(2, 75, 128);
+  background-color: rgb(124, 184, 201);
   color: white;
   padding: 15px 0;
   font-weight: 600;
@@ -97,17 +109,36 @@ body {
   cursor: pointer;
   transition: .2s;
 }
+.btn_sub:hover {
+  background-color: rgb(24, 108, 131);
+}
 
-.btn:hover {
-  background-color: rgb(2, 75, 128);
+.btn_form {
+  background-color: white;
+  border: none;
+  margin-left: 10px;
+  width: 80px;
+  height: 30px;
+}
+
+.btn_form:hover {
+  border: none;
+  border-bottom: 2px solid rgb(30, 132, 160);
+  color: rgb(18, 18, 65);
+  font-size: 15px;
 }
 
 /* Selectmovie.js 부분 */
 .movie {
   display : flex;
-  justify-content: space-around;
-  padding: 30px;
+  justify-content: space-between;
+  padding: 30px 200px;
 }
+.movieimg {
+  width: 350px;
+  height: 500px;
+}
+
 
 /* Selecttype.js 부분 */
 .quiztype {
@@ -131,7 +162,7 @@ body {
   border-bottom:1px solid black;
 }
 .type:hover{
-  background-color: rgb(201, 201, 201);
+  background-color: rgb(238, 252, 255);
 }
 
 
@@ -148,7 +179,22 @@ body {
   height: 450px;
   margin-left: auto;
   margin-right: auto;
+  flex-direction: row;
+  display: flex;
 }
+.summary{
+  width: 600px;
+  height: 500px;
+  z-index: 999;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  border: 2px solid rgb(121, 121, 121);
+  border-radius: 8px;
+  background-color: rgb(224, 240, 245);
+  text-align: center;
+}
+
 .problem {
   display:flex;
   width:700px;
@@ -170,8 +216,5 @@ body {
   border-bottom:1px solid black;
 }
 .selection:hover{
-  background-color: rgb(201, 201, 201);
-}
-.selection.visted{
-  border: 2px solid red;
+  background-color:  rgb(238, 252, 255);
 }

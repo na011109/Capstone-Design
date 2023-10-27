@@ -1,6 +1,5 @@
 import '../App.css';
 import { useState } from 'react';
-import Header from "../Header";
 
 function Signin(props) {
     const [id, setId] = useState("");
@@ -9,8 +8,6 @@ function Signin(props) {
   
     return <>
     <br />
-    
-      <Header />
       <h2>회원가입</h2>
   
       <div className="form">
@@ -24,7 +21,7 @@ function Signin(props) {
           setPassword2(event.target.value);
         }} /></p>
   
-        <p><input className="btn" type="submit" value="회원가입" onClick={() => {
+        <p><input className="btn_sub" type="submit" value="회원가입" onClick={() => {
           const userData = {
             userId: id,
             userPassword: password,
@@ -50,10 +47,9 @@ function Signin(props) {
         }} /></p>
       </div>
   
-      <p>로그인화면으로 돌아가기  <button className="btn_form"onClick={() => {
-        props.setMode("LOGIN");
-      }}>로그인</button></p>
-  
+      <p style={{height: '50px'}}>로그인화면으로 돌아가기  
+        <button className="btn_form" onClick={() => { props.setMode("LOGIN"); }}>로그인</button>
+      </p>
     </> 
   }
   export default Signin;

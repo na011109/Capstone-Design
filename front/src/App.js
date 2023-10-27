@@ -2,14 +2,17 @@ import './App.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
+import Header from './Header';
 import Login from "./UserController/Login.js";
 import Signin from "./UserController/Signin.js";
-import Quiz from "./QuizController/Quiz.js";
+import Topic from "./QuizController/Topic.js";
+import Dictation from "./QuizController/Dictation.js";
+import Substitute from "./QuizController/Substitute.js";
 import Selectmovie from './MovieController/Selectmovie';
 import Selecttype from './MovieController/Selecttype';
 
 function App() {
-  const [mode, setMode] = useState(""); //mode 상태 정의
+  const [mode, setMode] = useState(""); //mode 상태 정의        
 
   useEffect(() => { //로그인이 되어있으면 HOME, 안 되어있으면 LOGIN 페이지로 이동
     fetch("http://localhost:3000/authcheck")
@@ -38,23 +41,40 @@ function App() {
   else if (mode === 'SELECTTYPE') {
     content = <Selecttype setMode={setMode}></Selecttype>
   }
-  else if (mode === 'QUIZ') {
-    content = <Quiz setMode={setMode}></Quiz> 
+    else if (mode === 'DICTATION') {
+    content = <Dictation setMode={setMode}></Dictation> 
+  }
+  else if (mode === 'SUBSTITUTE') {
+    content = <Substitute setMode={setMode}></Substitute> 
+  }
+  else if (mode === 'TOPIC') {
+    content = <Topic setMode={setMode}></Topic> 
   }
 
 
-  const modeToClass = {
-    LOGIN: 'login-signin',
-    SIGNIN: 'login-signin',
-    SELECTMOVIE: 'selectmovie'
-  };
+
+  // const modeToClass = {
+  //   LOGIN: 'login-signin',
+  //   SIGNIN: 'login-signin',
+  //   SELECTMOVIE: 'selectmovie'
+  // };
   
-  const modeClass = modeToClass[mode] || 'background';
+  // const modeClass = modeToClass[mode] || 'background';
   
+  // return (
+  //   <div className={modeClass}>
+  //     {content}
+  //   </div>
+  // );
+
+
   return (
-    <div className={modeClass}>
+    <>
+    <Header mode={mode} setMode={setMode} />
+     <div className="background">   
       {content}
-    </div>
+     </div> 
+    </>
   );
 
 }
