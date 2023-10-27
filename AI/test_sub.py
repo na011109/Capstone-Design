@@ -1,5 +1,7 @@
+from flask import Flask, request, jsonify
 from subclass.master import MasterAI
 
+app = Flask(__name__)
 test = MasterAI()
 
 
@@ -7,12 +9,16 @@ test_sample = (
     "What is a suitable inpatient drug and alcohol rehab center near Scott County AR?"
 )
 
-# 정답 문장 3개
+@app.route('/correct_sentences')
+def correct_sentences():
+    correct = test.get_result(3, test_sample, 0)
+    return jsonify({"correct": correct})
 
-temp = test.get_result(3, test_sample, 0)
-print(temp)
+@app.route('/incorrect_sentences')
+def incorrect_sentences():
+    incorrect = test.get_result(3, test_sample, 1)
+    return jsonify({"incorrect": incorrect})
 
-# 오답 문장 3개
 
-temp = test.get_result(3, test_sample, 1)
-print(temp)
+if __name__ == '__main__':
+    app.run(debug=True)

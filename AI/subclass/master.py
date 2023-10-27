@@ -21,7 +21,7 @@ class MasterAI:
         return self.dication_ai.generate_dictation(qflag, text)
 
     def get_substitute(self, text: str, flag: int) -> list:
-        return self.substitute_ai.generate_question(text, flag)
+       return self.substitute_ai.generate_question(text, flag)
 
     def get_result(self, ai_flag: int, text: str | list, qflag: int | None) -> any:
         # ai_flag == 0, summary
@@ -33,8 +33,10 @@ class MasterAI:
         # ai_flag == 2, dictation
         elif ai_flag == 2:
             return self.get_dictation(text, qflag)
+
         # ai_flag == 3, substitute
         elif ai_flag == 3:
-            return self.get_substitute(text, qflag)
+           return self.get_substitute(text, qflag)
+
         else:
             return 0
