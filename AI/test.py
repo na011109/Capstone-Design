@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from threading import Thread
 from subclass.master import MasterAI
 
 test_sample = (
@@ -48,13 +49,22 @@ test_sample2 = (
 
 @app.route('/correct_sentences')
 def correct_sentences():
-    correct = test.get_result(3, test_sample2, 0)
-    return jsonify({"correct": correct})
+    def process_request():
+        correct = test.get_result(3, test_sample2, 0)
+        return jsonify({"correct": correct})
+
+    thread = Thread(target=process_request)
+    thread.start()
+
 
 @app.route('/incorrect_sentences')
 def incorrect_sentences():
-    incorrect = test.get_result(3, test_sample2, 1)
-    return jsonify({"incorrect": incorrect})
+    def process_request():
+        incorrect = test.get_result(3, test_sample2, 1)
+        return jsonify({"incorrect": incorrect})
+
+    thread = Thread(target=process_request)
+    thread.start()
 
 
 if __name__ == '__main__':
