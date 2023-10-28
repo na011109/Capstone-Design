@@ -1,5 +1,56 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+/* Header.js */
+
+.header{
+  width: 90%;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  margin: 0 10vh;
+  text-align: center;
+  height: 18vh;
+  background-color: white;
+  padding-bottom: 10px;
+}
+.he_ho {
+  padding-top: 10px;
+}
+.he_ho:hover{
+  cursor: pointer;
+}
+.link_contain{
+  width: 90%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.log_link{
+  color: rgb(68, 68, 68);
+  text-decoration: none;
+  font-size: 12pt;
+  padding-right: "10%"
+}
+.toggle{
+  height: 3vh;
+  text-align: center;
+  margin-right: 30px;
+  font-size: 10px;
+}
+.btn_select {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: white;
+  border: 1px;
+  color: black;
+  margin-right: 100px;
+  margin-left: 100px;
+  font-size: 14pt;
+}
+.btn_select:hover {
+  color: darkgray;
+  cursor: pointer;
+}
+
 /* Quiz.js 아래 버튼 사이 여백 설정 */
 .button-container button:not(:last-child) {
   margin-right: 10px;
@@ -16,13 +67,17 @@ body {
 .background {
   background-color: white;
   height: auto;
-  width: auto;
-  max-width: 850px;
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 5px;
+  width: 90%;
+  min-width: 80%;
+  min-height: 70%; 
+  margin: 0 10vh;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
   text-align: center;
+  padding-bottom: 20px;
 }
 .login-signin{
   background-color: white;
@@ -35,18 +90,14 @@ body {
   box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
-.selectmovie{
-  background-color: white;
-  height: auto;
-  width: auto;
-  max-width: 1000px;
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 5px;
-  box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
-  text-align: center;
-}
 
+/* .form {
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+} */
 .form {
   display: flex;
   padding: 30px;
@@ -104,16 +155,21 @@ body {
   justify-content: center;
 }
 .type {
+  font-family: 'Noto Sans KR', sans-serif;
   background-color: white;
+  display: flex;
   align-items: center;
-  width: 700px;;
+  justify-content: center;
+  width: 700px;
   height: 70px;
   margin-left: auto;
   margin-right: auto;
-  vertical-align: middle;
   border-right: 1px solid black;
-  border-bottom:1px solid black;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+
 .type:hover{
   background-color: rgb(201, 201, 201);
 }
@@ -122,6 +178,7 @@ body {
 /* Quiz.js 부분 */
 
 .quiz{
+  font-family: 'Noto Sans KR', sans-serif;
   display:flex;
   text-align: center;
   align-items: center;
@@ -133,6 +190,23 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+.summary{
+  font-family: 'Noto Sans KR', sans-serif;
+  width: auto;
+  height: auto;
+  padding: 15px;
+  z-index: 999;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  border: 2px solid rgb(212, 221, 228);
+  border-radius: 8px;
+  background-color: rgb(212, 221, 228);
+  text-align: left;
+  color: rgb(1, 18, 29);
+  box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
+}
+
 .problem {
   display:flex;
   width:700px;
@@ -142,6 +216,7 @@ body {
   justify-content: center;
 }
 .selection {
+  font-family: 'Noto Sans KR', sans-serif;
   background-color: white;
   align-items: center;
   width: 700px;;
@@ -150,6 +225,11 @@ body {
   margin-right: auto;
   vertical-align: middle;
   border-bottom:1px solid black;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.selection.selected {
+  background-color: rgb(201, 201, 201);
 }
 .selection:last-child {
   border-bottom: none;
@@ -159,4 +239,21 @@ body {
 }
 .selection.visted{
   border: 2px solid red;
+}
+
+
+/* Answer.js 부분 */
+
+.answer {
+  background-color: white;
+  align-items: center;
+  width: 700px;;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  border-bottom:1px solid black;
+}
+.answer:last-child {
+  border-bottom: none;
 }

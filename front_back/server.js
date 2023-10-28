@@ -31,15 +31,17 @@ app.get('/', (req, res) => {
     req.sendFile(path.join(__dirname, '/build/index.html'));
 })
 
-app.get('/authcheck', (req, res) => {      
+app.get('/authcheck', (req, res) => {
     const sendData = { isLogin: "" };
     if (req.session.is_logined) {
-        sendData.isLogin = "True"
+      sendData.isLogin = "True";
+      sendData.username = req.session.nickname; // 응답에 사용자 이름을 포함시킵니다.
     } else {
-        sendData.isLogin = "False"
+      sendData.isLogin = "False";
     }
     res.send(sendData);
-})
+  });
+  
 
 app.get('/logout', function (req, res) {
     req.session.destroy(function (err) {

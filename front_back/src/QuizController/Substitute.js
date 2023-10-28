@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
+import Modal from "react-modal";
 import "../App.css";
 
-const Quiz = (props) => {
+const Substitute = (props) => {
     const [data1, setData1] = useState({ correct: [] });
     const [data2, setData2] = useState({ incorrect: [] });
     const [isLoading, setIsLoading] = useState(true);
     const [shuffledData, setShuffledData] = useState([]);
+    const [sumopen, setSumopen] = useState(false);
 
     useEffect(() => {
         // correct 데이터 가져오기
@@ -24,7 +26,6 @@ const Quiz = (props) => {
                 setData2(data);
             });
     }, []);
-
 
     // 데이터가 모두 로드되면 데이터를 섞음
     useEffect(() => {
@@ -55,17 +56,21 @@ const Quiz = (props) => {
         return shuffled;
     };
 
-
+    
     return (
-        <div>
-            <div className="quiz">
-                <br />
-                <div className="movievideo">
-                    <img src="/img/insideout.jpg" alt="인사이드아웃" style={{ width: '800px', height: '450px', }} />
-                </div>
-                <br />
-                <br />
-                <div className="problem">
+    <div>
+        <div className="quiz">
+            <div className="movievideo" style={{display: "flex"}}>
+                <img  src="/img/insideout.jpg" alt="인사이드아웃" style={{ width: '800px', height: '450px',}} />    {/*  영상   */}
+                <img src="/img/search.png" alt="요약" style={{width: '50px', height:'50px', }} onClick={()=> setSumopen(true)}/>
+                    <Modal className="summary" isOpen={sumopen} onRequestClose={() => setSumopen(false)}>
+                    <p style={{ textAlign: "center", fontSize: "20pt", fontWeight: "bold" }}>Summary</p>
+                        <br />
+                    </Modal>
+            </div>
+            <br />
+            <div className="problem">
+            <div className="selection">
                     {isLoading ? (
                         <p>Loading...</p>
                     ) : (
@@ -77,34 +82,12 @@ const Quiz = (props) => {
                     )}
                 </div>
             </div>
-            <br />
-            <div className="button-container">
-                <button onClick={() => { props.setMode("SELECTMOVIE"); }}>영화 선택하기</button>
-                <button onClick={() => { props.setMode("SELECTTYPE"); }}>문제 유형 선택하기</button>
-            </div>
         </div>
-    );
+        <br />
+        <br />
+    </div>  
+        
+    )
 }
 
-export default Quiz;
-
-/*
-    // 배열을 무작위로 섞는 함수
-    const shuffleData = (correctData, incorrectData) => {
-        const shuffled = [];
-        // data1에서 3개 항목 가져오기
-        for (let i = 0; i < 3; i++) {
-            shuffled.push(correctData[i]);
-        }
-        // data2에서 1개 항목 가져오기
-        shuffled.push(incorrectData[0]);
-        
-        // 배열을 무작위로 섞음
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-
-        return shuffled;
-    };
-*/
+export default Substitute;

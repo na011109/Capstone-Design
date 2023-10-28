@@ -1,68 +1,83 @@
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
-import Login from "./UserController/Login.js";
-import Signin from "./UserController/Signin.js";
-import QuizTopic from "./QuizController/QuizTopic.js";
-import QuizDictation from "./QuizController/QuizDictation.js";
-import QuizSubstitute from "./QuizController/QuizSubstitute";
+import Header from './Header';
+import Login from './UserController/Login.js';
+import Signin from './UserController/Signin.js';
+import Topic from './QuizController/Topic.js';
+import Dictation from './QuizController/Dictation.js';
+import Substitute from './QuizController/Substitute';
 import Selectmovie from './MovieController/Selectmovie';
 import Selecttype from './MovieController/Selecttype';
+import A_Topic from './QuizController/A_Topic';
+import A_Dictation from './QuizController/A_Dictation';
+import A_Substitute from './QuizController/A_Substitute';
+
+import Quiz from './checkAnswer_test/Quiz';
+import Answer from './checkAnswer_test/Answer';
 
 function App() {
-  const [mode, setMode] = useState(""); //mode 상태 정의
+  const [mode, setMode] = useState('');
+  const [answerData, setAnswerData] = useState(null);
 
-  useEffect(() => { //로그인이 되어있으면 HOME, 안 되어있으면 LOGIN 페이지로 이동
-    fetch("http://localhost:3000/authcheck")
+  useEffect(() => {
+    fetch('http://localhost:3000/authcheck')
       .then((res) => res.json())
-      .then((json) => {        
-        if (json.isLogin === "True") {
-          setMode("SELECTMOVIE");
-        }
-        else {
-          setMode("LOGIN");
+      .then((json) => {
+        if (json.isLogin === 'True') {
+          setMode('SELECTMOVIE');
+        } else {
+          setMode('LOGIN');
         }
       });
-  }, []); 
+  }, []);
 
-  let content = null;  
+  let content = null;
 
-  if(mode==="LOGIN"){
-    content = <Login setMode={setMode}></Login> 
-  }
-  else if (mode === 'SIGNIN') {
-    content = <Signin setMode={setMode}></Signin> 
-  }
-  else if (mode === 'SELECTMOVIE') {
-    content = <Selectmovie setMode={setMode}></Selectmovie>
-  }
-  else if (mode === 'SELECTTYPE') {
-    content = <Selecttype setMode={setMode}></Selecttype>
-  }
-  else if (mode === 'QUIZ_TOPIC') {
-    content = <QuizTopic setMode={setMode}></QuizTopic> 
-  }
-  else if (mode === 'QUIZ_DIC') {
-    content = <QuizDictation setMode={setMode}></QuizDictation> 
-  }
-  else if (mode === 'QUIZ_SUB') {
-    content = <QuizSubstitute setMode={setMode}></QuizSubstitute> 
+  if (mode === 'LOGIN') {
+    content = <Login setMode={setMode}></Login>;
+  } else if (mode === 'SIGNIN') {
+    content = <Signin setMode={setMode}></Signin>;
+  } else if (mode === 'SELECTMOVIE') {
+    content = <Selectmovie setMode={setMode}></Selectmovie>;
+  } else if (mode === 'SELECTTYPE') {
+    content = <Selecttype setMode={setMode}></Selecttype>;
+
+  } else if (mode === 'TOPIC') {
+    content = <Topic setMode={setMode} setAnswerData={setAnswerData}></Topic>;
+  } else if (mode === 'DICTATION') {
+    content = <Dictation setMode={setMode} setAnswerData={setAnswerData}></Dictation>;
+  } else if (mode === 'SUBSTITUTE') {
+    content = <Substitute setMode={setMode} setAnswerData={setAnswerData}></Substitute>;
+  } else if (mode === 'A_TOPIC' && answerData) {
+    content = <A_Topic setMode={setMode} setAnswerData={setAnswerData} topic={answerData.topic} selectedIndex={answerData.selectedIndex}></A_Topic>;
+  } else if (mode === 'A_DICTATION' && answerData) {
+    content = <A_Dictation setMode={setMode} setAnswerData={setAnswerData} dictation={answerData.dictation}></A_Dictation>;
+  } else if (mode === 'A_SUBSTITUTE' && answerData) {
+    content = <A_Substitute setMode={setMode} setAnswerData={setAnswerData} substitute={answerData.substitute} selectedIndex={answerData.selectedIndex}></A_Substitute>;
+
+  } else if (mode === 'QUIZ') {
+    content = <Quiz setMode={setMode} setAnswerData={setAnswerData}></Quiz>;
+  } else if (mode === 'ANSWER' && answerData) {
+    content = <Answer setMode={setMode} setAnswerData={setAnswerData} summary={answerData.summary} selectedIndex={answerData.selectedIndex}></Answer>;
   }
 
 
   const modeToClass = {
     LOGIN: 'login-signin',
     SIGNIN: 'login-signin',
-    SELECTMOVIE: 'selectmovie'
   };
-  
   const modeClass = modeToClass[mode] || 'background';
-  
+
+  const renderHeader = mode !== 'LOGIN' && mode !== 'SIGNIN';
+
   return (
-    <div className={modeClass}>
+    <>
+      {renderHeader && <Header mode={mode} setMode={setMode} />}
+     <div className={modeClass}>   
       {content}
-    </div>
+     </div> 
+    </>
   );
 
 }
