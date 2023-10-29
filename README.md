@@ -22,7 +22,7 @@
 
 
 - #### checkAnswer_test 폴더 (Quiz.js, Answer.js): [정답 확인 화면] 테스트용 파일
-  &rightarrow; App.js, Selecttype.js에도 테스트용으로 추가되어있으니 실행 시 참고
+  &rightarrow; App.js, Selecttype.js, Header.js에도 테스트용으로 추가되어있으니 실행 시 참고
   
 
 <br>
@@ -32,7 +32,7 @@
 
 <br>
 
-  #### P.S. 언니가 front에서 작업하고 내가 수정 사항 보면서 front_back 수정하는 방법 아주 좋은 듯! 😆👍
+  ##### P.S. 언니가 front에서 작업하고 내가 수정 사항 보면서 front_back 수정하는 방법 아주 좋은 듯! 😆👍
 <br>
   
 <br>
