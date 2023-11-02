@@ -6,6 +6,7 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
 
   return <>
+  <br />
     <h2>로그인</h2>
 
     <div className="form">
@@ -16,7 +17,7 @@ const Login = (props) => {
         setPassword(event.target.value);
       }} /></p>
 
-    <p><input className="btn" type="submit" value="로그인" onClick={() => {
+      <p><input className="btn_sub" type="submit" value="로그인" onClick={() => {
         const userData = {
           userId: id,
           userPassword: password,
@@ -40,10 +41,9 @@ const Login = (props) => {
       }} /></p>
     </div>
 
-    <p>계정이 없으신가요?  <button className="btn_form" onClick={() => {
-      props.setMode("SIGNIN");
-    }}>회원가입</button></p>
-
+    <p style={{height: '50px'}}>계정이 없으신가요?
+      <button className="btn_form" onClick={() => { props.setMode("SIGNIN");  }}>회원가입 </button>
+    </p>
   </> 
 }
 export default Login;

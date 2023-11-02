@@ -39,3 +39,4 @@ const A_Dictation = (props) => {
     );
 }
 
+export default A_Dictation;

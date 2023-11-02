@@ -63,18 +63,27 @@ function App() {
   }
 
 
-  const modeToClass = {
-    LOGIN: 'login-signin',
-    SIGNIN: 'login-signin',
-  };
-  const modeClass = modeToClass[mode] || 'background';
+  // const modeToClass = {
+  //   LOGIN: 'login-signin',
+  //   SIGNIN: 'login-signin',
+  // };
+  // const modeClass = modeToClass[mode] || 'background';
 
-  const renderHeader = mode !== 'LOGIN' && mode !== 'SIGNIN';
+  // const renderHeader = mode !== 'LOGIN' && mode !== 'SIGNIN';
+
+  // return (
+  //   <>
+  //     {renderHeader && <Header mode={mode} setMode={setMode} />}
+  //    <div className={modeClass}>   
+  //     {content}
+  //    </div> 
+  //   </>
+  // );
 
   return (
     <>
-      {renderHeader && <Header mode={mode} setMode={setMode} />}
-     <div className={modeClass}>   
+    <Header mode={mode} setMode={setMode} />
+     <div className="background">   
       {content}
      </div> 
     </>
