@@ -1,16 +1,24 @@
 import React from "react";
 
 const A_Dictation = (props) => {
-    const { dictation } = props;
+    const { shuffledData, selectedIndex, incorrectIndex } = props;
 
     return (
         <div>
             <div className="quiz">
                 <br />
                 <div className="problem">
-                    <div className="answer">
-                        <p>{dictation}</p>
-                    </div>
+                    {shuffledData.map((item, index) => (
+                        <div className="answer" key={index}>
+                            <p
+                                style={{
+                                    color: index === incorrectIndex ? "blue" : index === selectedIndex ? "red" : "black",
+                                }}
+                            >
+                                {item}
+                            </p>
+                        </div>
+                    ))}
                 </div>
             </div>
             <br />
@@ -19,8 +27,9 @@ const A_Dictation = (props) => {
                     onClick={() => {
                         props.setAnswerData({
                             dictation: [],
+                            selectedIndex: null,
                         });
-                        props.setMode("DICTATION");
+                        props.setMode("TOPIC");
                     }}
                 >
                     다음 문제
@@ -30,4 +39,3 @@ const A_Dictation = (props) => {
     );
 }
 
-export default A_Dictation;

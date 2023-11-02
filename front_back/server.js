@@ -35,7 +35,7 @@ app.get('/authcheck', (req, res) => {
     const sendData = { isLogin: "" };
     if (req.session.is_logined) {
       sendData.isLogin = "True";
-      sendData.username = req.session.nickname; // 응답에 사용자 이름을 포함시킵니다.
+      sendData.username = req.session.nickname; 
     } else {
       sendData.isLogin = "False";
     }

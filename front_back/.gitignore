@@ -3,6 +3,8 @@
 db.js
 sessionOption.js
 
+.env
+
 # dependencies
 /node_modules
 /.pnp

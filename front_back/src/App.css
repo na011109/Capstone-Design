@@ -60,7 +60,8 @@
 
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: rgb(41, 93, 131);
+  /* background-color: rgb(242, 197, 225); */
+  background-color: rgb(2, 75, 128);
   margin: 50px 0; 
 }
 
@@ -185,8 +186,8 @@ body {
   flex-direction: column;
 }
 .movievideo{
-  width: 800px;
-  height: 450px;
+  width: 700px;
+  height: 392px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -199,11 +200,11 @@ body {
   position: absolute;
   top: 30%;
   left: 30%;
-  border: 2px solid rgb(212, 221, 228);
+  border: 2px solid rgb(206, 226, 240);
   border-radius: 8px;
-  background-color: rgb(212, 221, 228);
+  background-color: rgb(206, 226, 240);
   text-align: left;
-  color: rgb(1, 18, 29);
+  color: rgb(15, 33, 47);
   box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
 }
 
@@ -240,6 +241,28 @@ body {
 .selection.visted{
   border: 2px solid red;
 }
+
+.question {
+  background-color: white;
+  align-items: center;
+  width: 700px;;
+  height: 65px;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  border:1px solid black;
+  position: relative; 
+}
+.question::before {
+  content: "problem"; 
+  position: absolute;
+  top: -20px;
+  left: 15px; 
+  padding: 5px;
+  background-color: white;
+  font-size: 18px;
+}
+
 
 
 /* Answer.js 부분 */

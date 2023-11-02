@@ -19,7 +19,7 @@ const Header = (props) => {
         else{
             setShowbtn(false);
         }
-        if (props.mode === 'DICTATION' || props.mode === 'SUBSTITUTE' || props.mode === 'TOPIC') {
+        if (props.mode === 'DICTATION' || props.mode === 'SUBSTITUTE' || props.mode === 'TOPIC' || props.mode === 'A_DICTATION' || props.mode === 'A_SUBSTITUTE' || props.mode === 'A_TOPIC' || props.mode === 'QUIZ' ) {
             setVisible(true);
         }
         else {

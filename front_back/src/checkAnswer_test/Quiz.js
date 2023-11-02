@@ -9,11 +9,15 @@ const Quiz = (props) => {
     const [sumopen, setSumopen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null); // 선택한 항목의 인덱스 추가
 
+
+    const summarizeApiUrl = process.env.REACT_APP_SUMMARIZE_API;
+    const dictationApiUrl = process.env.REACT_APP_DICTATION_API;
+
     useEffect(() => {
         // 두 개의 fetch 요청을 Promise.all을 사용하여 병렬로 처리
         Promise.all([
-            fetch("http://localhost:5000/summarize").then((res) => res.json()),
-            fetch("http://localhost:5000/get_dictation").then((res) => res.json())
+            fetch(summarizeApiUrl).then((res) => res.json()),
+            fetch(dictationApiUrl).then((res) => res.json())
         ])
         .then(([summaryData, dictationData]) => {
             // 데이터를 받아온 후 빈 데이터 필터링

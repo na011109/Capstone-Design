@@ -52,14 +52,14 @@ function App() {
   } else if (mode === 'A_TOPIC' && answerData) {
     content = <A_Topic setMode={setMode} setAnswerData={setAnswerData} topic={answerData.topic} selectedIndex={answerData.selectedIndex}></A_Topic>;
   } else if (mode === 'A_DICTATION' && answerData) {
-    content = <A_Dictation setMode={setMode} setAnswerData={setAnswerData} dictation={answerData.dictation}></A_Dictation>;
+    content = <A_Dictation setMode={setMode} setAnswerData={setAnswerData} shuffledData={answerData.shuffledData} selectedIndex={answerData.selectedIndex} incorrectIndex={answerData.incorrectIndex}></A_Dictation>;
   } else if (mode === 'A_SUBSTITUTE' && answerData) {
-    content = <A_Substitute setMode={setMode} setAnswerData={setAnswerData} substitute={answerData.substitute} selectedIndex={answerData.selectedIndex}></A_Substitute>;
+    content = <A_Substitute setMode={setMode} setAnswerData={setAnswerData} shuffledData={answerData.shuffledData} selectedIndex={answerData.selectedIndex} incorrectIndex={answerData.incorrectIndex}></A_Substitute>;
 
   } else if (mode === 'QUIZ') {
     content = <Quiz setMode={setMode} setAnswerData={setAnswerData}></Quiz>;
   } else if (mode === 'ANSWER' && answerData) {
-    content = <Answer setMode={setMode} setAnswerData={setAnswerData} summary={answerData.summary} selectedIndex={answerData.selectedIndex}></Answer>;
+    content = <Answer setMode={setMode} setAnswerData={setAnswerData} summary={answerData.summary} selectedIndex={answerData.selectedIndex} ></Answer>;
   }
 
 

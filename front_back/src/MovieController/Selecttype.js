@@ -11,16 +11,16 @@ function Selecttype(props) {
       <div className="quiz">
         <div className="quiztype">
           <div className="type" onClick={() => { props.setMode("DICTATION"); }}>
-            받아쓰기
+            옳은 문장 찾기 (철자)
           </div>
           <div className="type" onClick={() => { props.setMode("TOPIC"); }}>
             키워드 찾기
           </div>
           <div className="type" onClick={() => { props.setMode("SUBSTITUTE"); }}>
-            대치
+            다른 문장 찾기 (의미)
           </div>
           <div className="type" onClick={() => { props.setMode("QUIZ"); }}>
-            정답확인 테스트
+            테스트
           </div>
         </div>
       </div> 
