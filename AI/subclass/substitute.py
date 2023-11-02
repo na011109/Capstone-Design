@@ -42,7 +42,7 @@ class SubstituteAI:
         self.corpus_sentences = list(self.corpus_sentences)
         self.corpus_embeddings = self.model.encode(
             self.corpus_sentences,
-            batch_size=256,
+            batch_size=64,
             show_progress_bar=True,
             convert_to_tensor=True,
         )

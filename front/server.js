@@ -1,6 +1,7 @@
 const express = require('express')
 const session = require('express-session')
-const path = require('path');
+const path = require('path')
+const cors = require('cors')
 const app = express()
 const port = 3000
 
@@ -8,6 +9,9 @@ const db = require('./lib/db');
 const sessionOption = require('./lib/sessionOption');
 const bodyParser = require("body-parser");
 const bcrypt = require('bcrypt');
+const axios = require('axios');
+
+app.use(cors())
 
 app.use(express.static(path.join(__dirname, '/build')));
 app.use(bodyParser.urlencoded({ extended: false }));
