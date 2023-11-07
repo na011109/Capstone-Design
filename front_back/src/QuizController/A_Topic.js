@@ -25,10 +25,10 @@ const A_Topic = (props) => {
             <div className="button-container">
                 <button
                     onClick={() => {
-                        props.setAnswerData({
-                            topic: [],
-                            selectedIndex: null,
-                        });
+                        // props.setAnswerData({
+                        //     topic: [],
+                        //     selectedIndex: null,
+                        // });
                         props.setMode("TOPIC");
                     }}
                 >

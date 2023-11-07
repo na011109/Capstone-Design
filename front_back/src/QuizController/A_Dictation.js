@@ -5,6 +5,13 @@ const A_Dictation = (props) => {
 
     return (
         <div>
+            {selectedIndex === incorrectIndex ? (
+                <h2 style={{ color: "blue" }}>정답</h2>
+            ) : (
+                <h2 style={{ color: "red" }}>오답</h2>
+            )}
+            <br />
+
             <div className="quiz">
                 <br />
                 <div className="problem">
@@ -25,10 +32,10 @@ const A_Dictation = (props) => {
             <div className="button-container">
                 <button
                     onClick={() => {
-                        props.setAnswerData({
-                            dictation: [],
-                            selectedIndex: null,
-                        });
+                        // props.setAnswerData({
+                        //     dictation: [],
+                        //     selectedIndex: null,
+                        // });
                         props.setMode("TOPIC");
                     }}
                 >
