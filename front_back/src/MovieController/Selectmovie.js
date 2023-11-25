@@ -15,6 +15,10 @@ function Selectmovie(props) {
         }}/> 
       </div>
 
+      <div className="button-container">
+          <button onClick={() => { props.setMode("LIST"); }}>오답 노트</button>
+      </div>
+
       <br />
      </>
   );

@@ -1,7 +1,7 @@
 from subclass.summary import SummaryAI
 from subclass.topic import TopicAI
 from subclass.dictation import DictationAI
-from subclass.substitute import SubstituteAI
+#from subclass.substitute import SubstituteAI
 
 
 class MasterAI:
@@ -9,7 +9,7 @@ class MasterAI:
         self.summary_ai = SummaryAI()
         self.topic_ai = TopicAI()
         self.dication_ai = DictationAI()
-        self.substitute_ai = SubstituteAI()
+        #self.substitute_ai = SubstituteAI()
 
     def get_summary(self, text: str) -> str:
         return self.summary_ai.generate_summary(text)
@@ -20,8 +20,8 @@ class MasterAI:
     def get_dictation(self, text: str, qflag: int) -> str:
         return self.dication_ai.generate_dictation(qflag, text)
 
-    def get_substitute(self, text: str, flag: int) -> list:
-        return self.substitute_ai.generate_question(text, flag)
+    #def get_substitute(self, text: str, flag: int) -> list:
+    #    return self.substitute_ai.generate_question(text, flag)
 
     def get_result(self, ai_flag: int, text: str | list, qflag: int | None) -> any:
         # ai_flag == 0, summary
@@ -35,8 +35,8 @@ class MasterAI:
             return self.get_dictation(text, qflag)
 
         # ai_flag == 3, substitute
-        elif ai_flag == 3:
-           return self.get_substitute(text, qflag)
+        #elif ai_flag == 3:
+        #   return self.get_substitute(text, qflag)
 
         else:
             return 0

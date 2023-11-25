@@ -9,18 +9,27 @@ const Quiz = (props) => {
     const [sumopen, setSumopen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null); // 선택한 항목의 인덱스 추가
 
+    const answerIndex = 3;
 
     useEffect(() => {
         // 두 개의 fetch 요청을 Promise.all을 사용하여 병렬로 처리
         Promise.all([
-            fetch("http://localhost:5000/summarize").then((res) => res.json()),
-            fetch("http://localhost:5000/get_dictation").then((res) => res.json())
+            fetch("http://localhost:5001/summarize").then((res) => res.json()),
+            fetch("http://localhost:5001/get_dictation").then((res) => res.json())
         ])
         .then(([summaryData, dictationData]) => {
             // 데이터를 받아온 후 빈 데이터 필터링
             const filteredSummaryData = summaryData.summary.filter(item => item.trim() !== '');
+
             // 마침표 추가
-            const summaryWithPeriods = filteredSummaryData.map((sentence) => sentence + ".");
+            const summaryWithPeriods = filteredSummaryData.map((sentence) => {
+                // 문장이 이미 마침표, 물음표, 느낌표로 끝나는지 확인
+                const hasPunctuation = /[.!?]$/.test(sentence.trim());
+              
+                // 만약 마침표, 물음표, 느낌표로 끝나지 않으면 마침표 추가
+                return hasPunctuation ? sentence : sentence + ".";
+            });
+
 
             setData1({ summary: summaryWithPeriods });
             setData2({ dictation: dictationData.dictation });
@@ -35,7 +44,8 @@ const Quiz = (props) => {
             props.setMode("ANSWER");
             props.setAnswerData({
                 summary: data1.summary,
-                selectedIndex,
+                selectedIndex: selectedIndex,
+                answerIndex: answerIndex,
             });
         } else {
             // 선택하지 않았을 때 메시지 표시
@@ -47,7 +57,7 @@ const Quiz = (props) => {
         <div>
             <div className="quiz">
                 <div className="movievideo" style={{display: "flex"}}>
-                    <img  src="/img/insideout.jpg" alt="인사이드아웃" style={{ width: '800px', height: '450px',}} />    {/*  영상   */}
+                <img  src="/img/insideout_2.jpg" alt="인사이드아웃" style={{ width: '700px', height: '392px',}} />    {/*  영상   */}
                     <img src="/img/search.png" alt="요약" style={{width: '50px', height:'50px', }} onClick={()=> setSumopen(true)}/>
                         <Modal className="summary" isOpen={sumopen} onRequestClose={() => setSumopen(false)}>
                         <p style={{ textAlign: "center", fontSize: "20pt", fontWeight: "bold" }}>Summary</p>

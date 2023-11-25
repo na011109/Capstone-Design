@@ -13,12 +13,16 @@ import A_Topic from './QuizController/A_Topic';
 import A_Dictation from './QuizController/A_Dictation';
 import A_Substitute from './QuizController/A_Substitute';
 
-import Quiz from './checkAnswer_test/Quiz';
-import Answer from './checkAnswer_test/Answer';
+import Quiz from './checkAnswer_test/Quiz.js';
+import Answer from './checkAnswer_test/Answer.js';
+
+import List from './AnswerNote/List.js';
+import Problem from './AnswerNote/Problem.js';
 
 function App() {
   const [mode, setMode] = useState('');
   const [answerData, setAnswerData] = useState(null);
+  const [indexData, setIndex] = useState(null);
 
   useEffect(() => {
     fetch('http://localhost:3000/authcheck')
@@ -49,17 +53,29 @@ function App() {
     content = <Dictation setMode={setMode} setAnswerData={setAnswerData}></Dictation>;
   } else if (mode === 'SUBSTITUTE') {
     content = <Substitute setMode={setMode} setAnswerData={setAnswerData}></Substitute>;
-  } else if (mode === 'A_TOPIC' && answerData) {
-    content = <A_Topic setMode={setMode} setAnswerData={setAnswerData} topic={answerData.topic} selectedIndex={answerData.selectedIndex}></A_Topic>;
-  } else if (mode === 'A_DICTATION' && answerData) {
-    content = <A_Dictation setMode={setMode} setAnswerData={setAnswerData} shuffledData={answerData.shuffledData} selectedIndex={answerData.selectedIndex} incorrectIndex={answerData.incorrectIndex}></A_Dictation>;
-  } else if (mode === 'A_SUBSTITUTE' && answerData) {
-    content = <A_Substitute setMode={setMode} setAnswerData={setAnswerData} shuffledData={answerData.shuffledData} selectedIndex={answerData.selectedIndex} incorrectIndex={answerData.incorrectIndex}></A_Substitute>;
 
+  } else if (mode === 'A_TOPIC' && answerData) {
+    content = <A_Topic setMode={setMode} setAnswerData={setAnswerData}
+     topic={answerData.topic} selectedIndex={answerData.selectedIndex}></A_Topic>;
+  } else if (mode === 'A_DICTATION' && answerData) {
+    content = <A_Dictation setMode={setMode} setAnswerData={setAnswerData}
+     shuffledData={answerData.shuffledData} selectedIndex={answerData.selectedIndex} answerIndex={answerData.answerIndex}></A_Dictation>;
+  } else if (mode === 'A_SUBSTITUTE' && answerData) {
+    content = <A_Substitute setMode={setMode} setAnswerData={setAnswerData}
+     problem={answerData.problem} shuffledData={answerData.shuffledData} selectedIndex={answerData.selectedIndex} answerIndex={answerData.answerIndex}></A_Substitute>;
+
+     
   } else if (mode === 'QUIZ') {
     content = <Quiz setMode={setMode} setAnswerData={setAnswerData}></Quiz>;
   } else if (mode === 'ANSWER' && answerData) {
-    content = <Answer setMode={setMode} setAnswerData={setAnswerData} summary={answerData.summary} selectedIndex={answerData.selectedIndex} ></Answer>;
+    content = <Answer setMode={setMode} setAnswerData={setAnswerData}
+     summary={answerData.summary} selectedIndex={answerData.selectedIndex} answerIndex={answerData.answerIndex} ></Answer>;
+
+  } else if (mode === 'LIST') {
+    content = <List setMode={setMode} setIndex={setIndex}></List>;
+  } else if (mode === 'PROBLEM' && indexData) {
+    content = <Problem setMode={setMode} setIndex={setIndex}
+    selectedId={indexData.selectedId} ></Problem>;
   }
 
 

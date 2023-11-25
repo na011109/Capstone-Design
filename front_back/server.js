@@ -123,6 +123,61 @@ app.post("/signin", (req, res) => {  // 데이터 받아서 결과 전송
 });
 
 
+app.post('/answernote', (req, res) => { // DB에 오답 문제 저장
+    const { problem, options, selectedIndex, answerIndex } = req.body;
+
+    db.query('INSERT INTO answerNote (username, problem, options, selectedIndex, answerIndex) VALUES (?, ?, ?, ?, ?)',
+        [req.session.nickname, problem, JSON.stringify(options), selectedIndex, answerIndex], 
+        (error, results, fields) => {
+            if (error) throw error;
+        }
+    );
+});
+
+
+app.get('/getList', (req, res) => { // DB에서 id, timestamp 리스트 불러오기
+    db.query('SELECT id, timestamp FROM answerNote WHERE username = ?', 
+        [req.session.nickname], (error, results, fields) => {
+            if (error) throw error;
+
+            if (results.length > 0) {
+                res.json(results);
+            }
+        }
+    );
+});
+
+
+app.get('/getProblem/:id', (req, res) => { // 리스트에서 선택한 퀴즈 불러오기
+    const id = req.params.id;
+
+    db.query('SELECT problem, options, selectedIndex, answerIndex, timestamp FROM answerNote WHERE username = ? AND id = ?', 
+        [req.session.nickname, id], (error, results, fields) => {
+            if (error) throw error;
+
+            if (results.length > 0) {
+                const retrievedOptions = results[0].options;
+                const problem = results[0].problem;
+                const selectedIndex = results[0].selectedIndex;
+                const answerIndex = results[0].answerIndex;
+                const timestamp = results[0].timestamp;
+
+                // JSON.parse()를 사용하여 데이터 변환
+                const options = JSON.parse(retrievedOptions);
+
+                res.json({ 
+                    problem: problem,
+                    options: options,
+                    selectedIndex: selectedIndex,
+                    answerIndex: answerIndex,
+                    timestamp: timestamp
+                });
+            }
+        }
+    );
+});
+
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })

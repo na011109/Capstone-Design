@@ -10,7 +10,7 @@ const Substitute = (props) => {
     const [shuffledData, setShuffledData] = useState([]);
     const [sumopen, setSumopen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null);
-    const [incorrectIndex, setIncorrectIndex] = useState(null);
+    const [answerIndex, setanswerIndex] = useState(null);
 
     const summarizeApiUrl = process.env.REACT_APP_SUMMARIZE_API;
     const correctApiUrl = process.env.REACT_APP_CORRECT_API;
@@ -50,11 +50,11 @@ const Substitute = (props) => {
 
     useEffect(() => {
         if (data1.correct.length > 0 && data2.incorrect.length === 3 && data3.summary.length > 0) {
-            const { shuffled, incorrectIndex } = shuffleData(data1.correct, data2.incorrect[0]);
+            const { shuffled, answerIndex } = shuffleData(data1.correct, data2.incorrect[0]);
             setShuffledData(shuffled);
 
-            setIncorrectIndex(incorrectIndex);
-            console.log(incorrectIndex);
+            setanswerIndex(answerIndex);
+            console.log(answerIndex);
 
             setIsLoading(false);
         }
@@ -68,18 +68,19 @@ const Substitute = (props) => {
         }
 
         // incorrectData가 shuffled 배열에서 몇 번째 인덱스에 있는지 찾음
-        const incorrectIndex = shuffled.indexOf(incorrectData);
+        const answerIndex = shuffled.indexOf(incorrectData);
 
-        return { shuffled, incorrectIndex };
+        return { shuffled, answerIndex };
     };
 
     const moveAnswer = () => {
         if (selectedIndex !== null) {
             props.setMode("A_SUBSTITUTE");
             props.setAnswerData({
+                problem: data1.sample,
                 shuffledData: shuffledData,
                 selectedIndex,
-                incorrectIndex,
+                answerIndex,
             });
         } else {
             // 선택하지 않았을 때 메시지 표시
@@ -113,7 +114,7 @@ const Substitute = (props) => {
                 </div>
                 <br />
                 <br />
-
+                
                 <div className="question">
                     {data1.sample && data1.sample.length > 0 && ( 
                         <div>

@@ -9,7 +9,7 @@ const Dictation = (props) => {
     const [shuffledData, setShuffledData] = useState([]);
     const [sumopen, setSumopen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null);
-    const [incorrectIndex, setIncorrectIndex] = useState(null);
+    const [answerIndex, setanswerIndex] = useState(null);
 
 
     const summarizeApiUrl = process.env.REACT_APP_SUMMARIZE_API;
@@ -25,8 +25,16 @@ const Dictation = (props) => {
         .then(([summaryData, dictationData]) => {
             // 데이터를 받아온 후 빈 데이터 필터링
             const filteredSummaryData = summaryData.summary.filter(item => item.trim() !== '');
+
             // 마침표 추가
-            const summaryWithPeriods = filteredSummaryData.map((sentence) => sentence + ".");
+            const summaryWithPeriods = filteredSummaryData.map((sentence) => {
+                // 문장이 이미 마침표, 물음표, 느낌표로 끝나는지 확인
+                const hasPunctuation = /[.!?]$/.test(sentence.trim());
+              
+                // 만약 마침표, 물음표, 느낌표로 끝나지 않으면 마침표 추가
+                return hasPunctuation ? sentence : sentence + ".";
+            });
+
 
             setData1({ summary: summaryWithPeriods });
             setData2({ 
@@ -44,9 +52,9 @@ const Dictation = (props) => {
             setShuffledData(shuffled);
 
             // sample의 인덱스 저장
-            const incorrectIndex = shuffled.indexOf(dictationData.sample);
-            setIncorrectIndex(incorrectIndex);
-            console.log(incorrectIndex)
+            const answerIndex = shuffled.indexOf(dictationData.sample);
+            setanswerIndex(answerIndex);
+            console.log(answerIndex)
 
             setIsLoading(false);
         });
@@ -67,7 +75,7 @@ const Dictation = (props) => {
             props.setAnswerData({
                 shuffledData: shuffledData,
                 selectedIndex,
-                incorrectIndex,
+                answerIndex,
             });
         } else {
             // 선택하지 않았을 때 메시지 표시
