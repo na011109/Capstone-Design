@@ -33,7 +33,7 @@
 
 <br>
 
-### <추후 구현해야 하는 부분>
+### <추후 구현>
 - #### Back-End
   - Problem.js
     - 퀴즈 화면 구성 (problem은 null이 아닐 경우에만 표시되도록..)
@@ -44,6 +44,11 @@
   - Selectmovie.js: `오답 노트` 버튼 Header.js로 이동
   - `(Problem.js → List.js) 되돌아가는 버튼` 생성
     ###### ⭐(List.js → Problem.js) 이동은 리스트에서 선택하면 바로 넘어가서 따로 버튼 필요 없습니다
+
+<br>
+
+#### <추추추추추후에>
+- Selectmovie.js: 선택한 영화에 해당하는 문제만 표시
 
 <br>
 
