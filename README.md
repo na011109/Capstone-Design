@@ -6,7 +6,7 @@
   - **id**: tuple 식별 번호
   - **username**: 현재 로그인 중인 사용자ID (req.session.nickname)
   - **problem**: 제시된 원문
-    - problem은 NULL 값이 가능하도록 설정 (Substitute에만 있기 때문)
+    - problem은 NULL 값 가능하도록 (Substitute에만 있기 때문~)
   - **options**: 선택지
     - JSON 형식 그대로 저장 → 불러올 때, JSON.parse()를 통해 문자열을 JSON으로 변환
   - **selectedIndex**: 선택한 선택지 인덱스 번호
