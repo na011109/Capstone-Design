@@ -89,10 +89,10 @@
 
 <br>
 
-- Front-End: React
-- Back-End: Node.js
-- Database: MySQL
-- AI: Python, Flask
+- **Front-End**: React
+- **Back-End**: Node.js
+- **Database**: MySQL
+- **AI**: Python, Flask
 
 
 <br>
