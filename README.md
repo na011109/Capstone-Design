@@ -15,12 +15,27 @@
 
 <br>
 
-- #### List.js, Problem.js (추가된 파일)
+- #### List.js, Problem.js, Check.js (추가된 파일)
   - **List.js - [오답노트 화면]**: 오답 퀴즈 리스트 표시
     - 일단 데이터베이스에 저장한 시간(timestamp 속성 값)으로 문제 구분
-    - Problem.js로 화면 전환 시, 선택한 오답 문제 id 값 전달
-  - **Problem.js - [오답노트 퀴즈 화면]**: 오답 퀴즈 풀이
-    <br> *현재는 불러온 데이터 확인만 가능
+    - Problem.js로 이동 시, 선택한 오답 문제 id 값 전달
+  - **Problem.js - [오답노트 - 퀴즈 화면]**: 오답 퀴즈 풀이 (일반 퀴즈 화면과 동일)
+    - problem은 NULL이 아닌 경우에만 표시
+    - Check.js로 이동 시, 모든 데이터 전달
+      *재풀이 때 선택한 선택지도 함께 전달
+  - **Check.js - [오답노트 - 정답 확인 화면]**: 오답 퀴즈 정답 확인
+    - problem은 NULL이 아닌 경우에만 표시
+    - **공통**
+      - `확인`: List.js으로 화면 전환
+      - `이전에 선택한 선택지`: 퀴즈 첫 풀이 때 선택한 선택지 표시
+    - **정답**
+      - AnswerNote 데이터베이스에 해당 퀴즈 데이터 삭제
+    - **오답**
+      - 데이터베이스 영향 X
+      - `다시 풀기`: 현재 id를 Problem.js에 다시 전달해 퀴즈 재풀이
+      - `정답 확인`: 해당 퀴즈의 정답 표시
+      <br>
+    *`정답 확인`, `이전에 선택한 선택지`는 클릭할 때마다 보이기/숨기기로 설정 가능
   ###### ⭐이름은 임시로 지었어요.. ^_^
 - #### <server.js> 데이터베이스, 프론트엔드와의 통신을 위한 엔드포인트 추가
   - **'/answernote'**: 데이터베이스에 오답 퀴즈 저장
@@ -30,30 +45,26 @@
   - **'/getProblem/:id'**: 리스트에서 선택한 오답 퀴즈 데이터(problem, options, selectedIndex, answerIndex) 불러오기
     - Problem.js에는 'getProblem/${selectedId}'로 fetch 설정
     - selectedId: List.js에서 전달받은 id 값
+  - **'/deleteProblem/:id'**: 재풀이하여 정답일 시, id 값에 해당하는 tuple 삭제
 
 <br>
 
 ### <추후 구현>
-- #### Back-End
-  - Problem.js
-    - 퀴즈 화면 구성 (problem은 null이 아닐 경우에만 표시되도록..)
-    - 재풀이하여 정답 시, 해당 퀴즈를 저장했던 tuple은 삭제되도록
-- #### Front-End
-  - 전체적인 페이지 width 조금만 줄여주세요 ㅎㅎ..
-  - QuizController: `정답 확인`, `다음 문제` 버튼 수정
-  - Selectmovie.js: `오답 노트` 버튼 Header.js로 이동
-  - `(Problem.js → List.js) 되돌아가는 버튼` 생성
-    ###### ⭐(List.js → Problem.js) 이동은 리스트에서 선택하면 바로 넘어가서 따로 버튼 필요 없습니다
+- 전체적인 페이지 width 조금만 줄여주세요 ㅎㅎ..
+- QuizController: `정답 확인`, `다음 문제` 버튼 수정
+  - Problem.js: `정답 확인` 버튼 수정 
+- Selectmovie.js: `오답 노트` 버튼 Header.js로 이동
+- Check.js: `다시 풀기`, `확인` 버튼 수정
+
+<br>
+
+#### 🙏 솔직히 사진 없이 이해하기 힘들어서 그냥 같이 올린 보고서 보는 게 나을 듯..합니다요 🙏
+#### 😱 테스트 용 Quiz.js, Answer.js 때문에 오답노트 부분 이름이 좀 이상하긴 한데, 수정.. 언젠가 할게요 😱
 
 <br>
 
 #### <추추추추추후에>
 - Selectmovie.js: 선택한 영화에 해당하는 문제만 표시
-
-<br>
-
-#### 🙏 국어 능력 이슈로 인해 가독성이 좀..(많이) 딸리는데, 잘 이해되지 않는다면.. 올라간 보고서를 읽어주십사 🙏
-#### 👉 아니면.. 23.11.25 태그 붙은 수정된 파일 봐도 대충 이해 잘 될겁니다요 굿~👍
 
 <br>
 <br>
