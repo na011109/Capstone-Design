@@ -18,6 +18,7 @@ import Answer from './checkAnswer_test/Answer.js';
 
 import List from './AnswerNote/List.js';
 import Problem from './AnswerNote/Problem.js';
+import Check from './AnswerNote/Check.js';
 
 function App() {
   const [mode, setMode] = useState('');
@@ -74,8 +75,11 @@ function App() {
   } else if (mode === 'LIST') {
     content = <List setMode={setMode} setIndex={setIndex}></List>;
   } else if (mode === 'PROBLEM' && indexData) {
-    content = <Problem setMode={setMode} setIndex={setIndex}
+    content = <Problem setMode={setMode} setIndex={setIndex} setAnswerData={setAnswerData}
     selectedId={indexData.selectedId} ></Problem>;
+  } else if (mode === 'CHECK') {
+    content = <Check setMode={setMode} setIndex={setIndex} setAnswerData={setAnswerData}
+    id={answerData.id} problem={answerData.problem} options={answerData.options} selectedIndex={answerData.selectedIndex} answerIndex={answerData.answerIndex} reselectedIndex={answerData.reselectedIndex} ></Check>;
   }
 
 

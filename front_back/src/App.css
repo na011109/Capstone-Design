@@ -267,11 +267,12 @@ body {
   border: 2px solid red;
 }
 
+/* Substitute 원문 제시 */
 .question {
   background-color: white;
   align-items: center;
   width: 700px;;
-  height: 65px;
+  height: 70px;
   margin-left: auto;
   margin-right: auto;
   vertical-align: middle;
@@ -289,7 +290,6 @@ body {
 }
 
 
-
 /* Answer.js 부분 */
 
 .answer {
@@ -304,4 +304,19 @@ body {
 }
 .answer:last-child {
   border-bottom: none;
+}
+
+
+.show_index {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 700px;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  cursor: pointer;
+  font-weight: bold;
 }

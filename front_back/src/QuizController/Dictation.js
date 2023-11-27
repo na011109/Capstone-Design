@@ -69,6 +69,7 @@ const Dictation = (props) => {
         return shuffled;
     };
 
+
     const moveAnswer = () => {
         if (selectedIndex !== null) {
             props.setMode("A_DICTATION");

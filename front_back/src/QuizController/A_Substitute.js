@@ -38,7 +38,6 @@ const A_Substitute = (props) => {
                 )}
                 <br />
                 
-                <br />
                 <div className="question">
                     {problem && (
                         <p>{problem}</p>

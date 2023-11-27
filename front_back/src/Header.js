@@ -60,6 +60,9 @@ const Header = (props) => {
                     <button className="btn_select" onClick={() => { props.setMode("SELECTMOVIE"); }}>영화 선택하기</button> 
                     <button className="btn_select" onClick={() => { props.setMode("SELECTTYPE"); }}>문제 유형 선택하기</button>          
                 </div>}
+                {props.mode === 'PROBLEM' && <div className="toggle">
+                    <button className="btn_select" onClick={() => { props.setMode("LIST"); }}>오답노트 리스트</button>       
+                </div>}
             </div>            
         </div>
      

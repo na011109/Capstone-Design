@@ -51,6 +51,7 @@ const List = (props) => {
             ))}
         </div>
       </div> 
+      <br />
     </div>
   );
 };

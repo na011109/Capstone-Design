@@ -9,7 +9,7 @@ const Quiz = (props) => {
     const [sumopen, setSumopen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null); // 선택한 항목의 인덱스 추가
 
-    const answerIndex = 3;
+    const answerIndex = 1;
 
     useEffect(() => {
         // 두 개의 fetch 요청을 Promise.all을 사용하여 병렬로 처리

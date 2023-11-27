@@ -177,6 +177,16 @@ app.get('/getProblem/:id', (req, res) => { // 리스트에서 선택한 퀴즈 �
     );
 });
 
+app.delete('/deleteProblem/:id', (req, res) => { // 특정 id의 tuple 삭제
+    const id = req.params.id;
+
+    db.query('DELETE FROM answerNote WHERE username = ? AND id = ?',
+        [req.session.nickname, id], (error, results, fields) => {
+            if (error) throw error;
+        }
+    );
+});
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
