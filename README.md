@@ -22,7 +22,7 @@
   - **Problem.js - [오답노트 - 퀴즈 화면]**: 오답 퀴즈 풀이 (일반 퀴즈 화면과 동일)
     - problem은 NULL이 아닌 경우에만 표시
     - Check.js로 이동 시, 모든 데이터 전달
-      *재풀이 때 선택한 선택지도 함께 전달
+    <br> *재풀이 때 선택한 선택지도 함께 전달
   - **Check.js - [오답노트 - 정답 확인 화면]**: 오답 퀴즈 정답 확인
     - problem은 NULL이 아닌 경우에만 표시
     - **공통**
@@ -41,7 +41,7 @@
   - **'/answernote'**: 데이터베이스에 오답 퀴즈 저장
     - [정답 확인 화면]에서 selectedIndex와 answerIndex가 서로 다른 경우(오답인 경우)에만 저장 
   - **'/getList'**: 데이터베이스에서 오답 퀴즈 리스트 불러오기
-    - 현재 로그인 중인 username에 해당하는 퀴즈 리스트만 표시할 수 있게 설정
+    - 현재 로그인 중인 username에 해당하는 퀴즈 리스트만 표시
   - **'/getProblem/:id'**: 리스트에서 선택한 오답 퀴즈 데이터(problem, options, selectedIndex, answerIndex) 불러오기
     - Problem.js에는 'getProblem/${selectedId}'로 fetch 설정
     - selectedId: List.js에서 전달받은 id 값
